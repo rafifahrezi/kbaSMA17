@@ -80,7 +80,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-primary/10 transition-all duration-300 group"
                 >
-                  <span className="text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0">
+                  <span className="text-muted-foreground group-hover:text-primary transition-colors shrink-0">
                     {social.icon}
                   </span>
                   <span className="text-sm text-muted-foreground group-hover:text-primary transition-colors">

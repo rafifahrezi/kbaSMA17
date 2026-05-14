@@ -1,29 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Calendar, Users, History, ArrowRight } from "lucide-react";
+import { Calendar, ArrowRight } from "lucide-react";
 import { Button } from "./../components/ui/button";
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "./../components/ui/card";
-import { motion } from "framer-motion";
+import { motion, easeInOut } from "framer-motion";
 
 export default function Home() {
     useEffect(() => {
         document.title =
             "KBA17 - Keluarga Besar Alumni SMAN 17 Jakarta Barat";
     }, []);
-
-    const [stats] = useState({
-        totalAnggota: 1250,
-        angkatanTerwakilkan: 35,
-        totalKegiatan: 120,
-        tahunBerdiri: 2020,
-    });
 
     const [upcomingEvents] = useState([
         {
@@ -73,7 +64,7 @@ export default function Home() {
             y: 0,
             transition: {
                 duration: 0.7,
-                ease: "easeOut",
+                ease: easeInOut,
             },
         },
     };
