@@ -238,88 +238,6 @@ export default function Home() {
             </section>
 
             {/* About us Short */}
-            {/* <section className="relative overflow-hidden bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 py-20 md:py-28 lg:py-32">
-                <div className="absolute inset-0">
-                    <div className="absolute inset-0 opacity-[0.03] background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 1px); background-size: 32px 32px"></div>
-                    <div className="absolute inset-0 bg-linear-to-t from-slate-900 via-transparent to-slate-900"></div>
-                </div>
-                <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="mx-auto max-w-7xl">
-                        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 xl:gap-20">
-
-                            <motion.div
-                                initial={{ opacity: 0, x: -60 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8 }}
-                                className="shrink-0 w-full lg:w-auto animate-in fade-in slide-in-from-left duration-700">
-                                <div className="relative group">
-
-
-                                    <div className="relative w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56">
-                                        <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary/30 animate-spin-slow"></div>
-                                        <div className="absolute inset-2 rounded-full bg-linear-to-br from-primary via-primary/80 to-primary/60 shadow-2xl shadow-primary/30 overflow-hidden ring-4 ring-white/10 group-hover:ring-white/20 transition-all duration-500 group-hover:scale-105">
-                                            <div className="w-full h-full flex items-center justify-center bg-black/20 backdrop-blur-sm">
-                                                <svg className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 text-white drop-shadow-lg transform group-hover:scale-110 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                                                    <circle cx="12" cy="8" r="4" />
-                                                    <path d="M12 14c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div className="absolute inset-0 rounded-full bg-primary/20 opacity-0 group-hover:opacity-100 animate-ping-slow transition-opacity duration-700"></div>
-                                    </div>
-                                    <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary/20 rounded-full blur-sm"></div>
-                                    <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-blue-500/20 rounded-full blur-sm"></div>
-                                </div>
-                            </motion.div>
-
-                            <motion.div
-                                initial={{ opacity: 0, x: 60 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8 }}
-                                className="flex-1 text-center lg:text-left space-y-6">
-                                <div className="space-y-3 animate-in fade-in-up duration-700 delay-100">
-                                    <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight">
-                                        Dari Satu Atap,
-                                        <br className="hidden sm:block" />
-                                        <span className="text-primary">
-                                            Untuk Selamanya
-                                        </span>
-                                    </h2>
-                                </div>
-                                <div className="space-y-4 animate-in fade-in-up duration-700 delay-200">
-                                    <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                                        KBA17 berdiri di atas semangat kebersamaan, siap menghubungkan angkatan pertama hingga terbaru.
-                                        Kami bukan sekadar daftar nama di buku tahunan. Kami adalah <span className="text-white font-semibold">Keluarga Besar Alumni SMAN 17</span> —
-                                        ikatan ribuan lulusan lintas generasi yang disatukan oleh cerita, tawa, dan perjuangan di ruang
-                                        belajar yang sama.
-                                    </p>
-                                </div>
-                                <div className="flex flex-col sm:flex-row gap-4 pt-6 animate-in fade-in-up duration-700 delay-400">
-                                    <a href="{{ route('members') }}"
-                                        className="group relative inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25">
-                                        <span className="relative z-10">Daftar Anggota</span>
-                                        <svg className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                        </svg>
-                                        <div className="absolute inset-0 bg-linear-to-r from-primary/80 to-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                                    </a>
-
-                                    <a href="#"
-                                        className="group inline-flex items-center justify-center gap-2 px-8 py-3 border-2 border-white text-blue-100 font-semibold rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25">
-                                        <span>Daftar Pengurus KBA17</span>
-                                        <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </motion.div>
-                        </div>
-                    </div>
-                </div>
-            </section> */}
             <section className="relative overflow-hidden bg-white py-24 dark:bg-slate-950">
                 {/* Decorative Elements */}
                 <div className="absolute inset-0 overflow-hidden">
@@ -403,9 +321,9 @@ export default function Home() {
                             {/* Main Image */}
                             <div className="relative overflow-hidden rounded-3xl shadow-2xl">
                                 <img
-                                    src="./images/blandongan-era.png"
+                                    src="./images/tentang.jpeg"
                                     alt="KBA17 Alumni"
-                                    className="h-125 w-full object-cover"
+                                    className="h-full w-full object-cover"
                                 />
 
                                 {/* Overlay */}
