@@ -9,8 +9,8 @@ import { TooltipProvider } from "./components/ui/tooltip";
 import { Toaster } from "./components/ui/toaster";
 
 import Home from "./pages/home";
-// import TentangKami from "@/pages/tentang-kami";
-// import Pengurus from "@/pages/pengurus";
+import About from "./pages/about";
+import Pengurus from "./pages/pengurus";
 // import Kegiatan from "@/pages/kegiatan";
 // import Anggota from "@/pages/anggota";
 // import NotFound from "@/pages/not-found";
@@ -30,9 +30,9 @@ function App() {
             <main className="flex-1">
               <Routes>
                 <Route path="/" element={<Home />} />
-                {/* <Route path="/tentang-kami" element={<TentangKami />} />
+                <Route path="/tentang-kami" element={<About />} />
                 <Route path="/pengurus" element={<Pengurus />} />
-                <Route path="/kegiatan" element={<Kegiatan />} />
+ {/*                <Route path="/kegiatan" element={<Kegiatan />} />
                 <Route path="/anggota" element={<Anggota />} />
                 <Route path="*" element={<NotFound />} /> */}
               </Routes>
