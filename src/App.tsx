@@ -11,8 +11,8 @@ import { Toaster } from "./components/ui/toaster";
 import Home from "./pages/home";
 import About from "./pages/about";
 import Pengurus from "./pages/pengurus";
+import Anggota from "./pages/anggota";
 // import Kegiatan from "@/pages/kegiatan";
-// import Anggota from "@/pages/anggota";
 // import NotFound from "@/pages/not-found";
 
 function App() {
@@ -32,8 +32,8 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/tentang-kami" element={<About />} />
                 <Route path="/pengurus" element={<Pengurus />} />
- {/*                <Route path="/kegiatan" element={<Kegiatan />} />
                 <Route path="/anggota" element={<Anggota />} />
+ {/*                <Route path="/kegiatan" element={<Kegiatan />} />
                 <Route path="*" element={<NotFound />} /> */}
               </Routes>
             </main>
