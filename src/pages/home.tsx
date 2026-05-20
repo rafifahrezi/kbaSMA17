@@ -186,15 +186,22 @@ export default function Home() {
                             <motion.div
                                 variants={fadeUp}
                                 className="mt-10 flex flex-col gap-4 sm:flex-row">
-                                <button className="group relative overflow-hidden rounded-xl bg-yellow-400 px-7 py-4 font-semibold text-slate-950 shadow-[0_0_30px_rgba(250,204,21,0.25)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_45px_rgba(250,204,21,0.45)]">
+                                <Link
+                                    to="/anggota"
+                                    className="group relative overflow-hidden rounded-xl bg-yellow-400 px-7 py-4 font-semibold text-slate-950 shadow-[0_0_30px_rgba(250,204,21,0.25)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_45px_rgba(250,204,21,0.45)]"
+                                >
                                     <span className="relative z-10">
                                         Daftar Anggota
                                     </span>
                                     <div className="absolute inset-0 bg-linear-to-r from-yellow-300 to-yellow-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                                </button>
-                                <button className="rounded-xl border border-white/20 bg-white/5 px-7 py-4 font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-yellow-400/50 hover:bg-white/10 hover:text-yellow-300">
+                                </Link>
+
+                                <Link
+                                    to="/pengurus"
+                                    className="rounded-xl border border-white/20 bg-white/5 px-7 py-4 font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-yellow-400/50 hover:bg-white/10 hover:text-yellow-300"
+                                >
                                     Daftar Pengurus KBA17
-                                </button>
+                                </Link>
                             </motion.div>
                         </motion.div>
                         {/* RIGHT VISUAL / LOGO */}
