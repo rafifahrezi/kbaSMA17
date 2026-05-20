@@ -1,8 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
-import { Search, UserPlus, Table as TableIcon, Loader2 } from "lucide-react";
+
+import {
+    Search,
+    UserPlus,
+    Table as TableIcon,
+    Loader2
+} from "lucide-react";
+
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 
 import {
     collection,
@@ -53,31 +58,22 @@ import {
 import { useToast } from "./../hooks/use-toast";
 
 /* -------------------------------------------------------------------------- */
-/*                                   Schema                                   */
+/*                                   Types                                    */
 /* -------------------------------------------------------------------------- */
 
-const anggotaSchema = z.object({
-    nama: z.string().min(2, "Nama minimal 2 karakter"),
-
-    angkatan: z.coerce
-        .number()
-        .min(1980, "Tahun tidak valid")
-        .max(new Date().getFullYear(), "Tahun tidak valid"),
-
-    email: z.string().email("Email tidak valid"),
-
-    pekerjaan: z.string().optional(),
-
-    whatsapp: z.string().optional(),
-});
-
-type AnggotaFormValues = z.infer<typeof anggotaSchema>;
+type AnggotaFormValues = {
+    nama: string;
+    angkatan: number;
+    alamat: string;
+    pekerjaan?: string;
+    whatsapp?: string;
+};
 
 type AnggotaItem = {
     id: string;
     nama: string;
     angkatan: number;
-    email: string;
+    alamat: string;
     pekerjaan?: string;
     whatsapp?: string;
     createdAt?: string;
@@ -137,7 +133,7 @@ export default function Anggota() {
                     id: doc.id,
                     nama: data.nama,
                     angkatan: data.angkatan,
-                    email: data.email,
+                    alamat: data.alamat,
                     pekerjaan: data.pekerjaan || "",
                     whatsapp: data.whatsapp || "",
                     createdAt: data.createdAt?.toDate?.().toISOString(),
@@ -151,7 +147,8 @@ export default function Anggota() {
             toast({
                 variant: "destructive",
                 title: "Gagal mengambil data",
-                description: "Terjadi kesalahan saat mengambil data anggota.",
+                description:
+                    "Terjadi kesalahan saat mengambil data anggota.",
             });
         } finally {
             setLoading(false);
@@ -208,7 +205,9 @@ export default function Anggota() {
                         <Input
                             placeholder="Cari nama, angkatan, atau pekerjaan..."
                             value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onChange={(e) =>
+                                setSearchTerm(e.target.value)
+                            }
                             className="pl-10"
                         />
                     </div>
@@ -266,7 +265,6 @@ export default function Anggota() {
                                             <TableCell className="font-medium">
                                                 <div className="flex items-center gap-3">
                                                     <Avatar className="h-9 w-9 border border-border/50">
-
                                                         <AvatarFallback className="bg-primary/10 font-semibold text-primary">
                                                             {anggota.nama
                                                                 .substring(0, 2)
@@ -315,7 +313,9 @@ type RegisterDialogProps = {
     onSuccess: () => void;
 };
 
-function RegisterDialog({ onSuccess }: RegisterDialogProps) {
+function RegisterDialog({
+    onSuccess,
+}: RegisterDialogProps) {
     const { toast } = useToast();
 
     const [open, setOpen] = useState(false);
@@ -323,12 +323,12 @@ function RegisterDialog({ onSuccess }: RegisterDialogProps) {
     const [loading, setLoading] = useState(false);
 
     const form = useForm<AnggotaFormValues>({
-        resolver: zodResolver(anggotaSchema),
+        mode: "onChange",
 
         defaultValues: {
             nama: "",
             angkatan: new Date().getFullYear(),
-            email: "",
+            alamat: "",
             pekerjaan: "",
             whatsapp: "",
         },
@@ -338,7 +338,9 @@ function RegisterDialog({ onSuccess }: RegisterDialogProps) {
     /*                               Submit Data                              */
     /* ---------------------------------------------------------------------- */
 
-    const onSubmit = async (data: AnggotaFormValues) => {
+    const onSubmit = async (
+        data: AnggotaFormValues
+    ): Promise<void> => {
         try {
             setLoading(true);
 
@@ -363,7 +365,8 @@ function RegisterDialog({ onSuccess }: RegisterDialogProps) {
             toast({
                 variant: "destructive",
                 title: "Pendaftaran Gagal",
-                description: "Terjadi kesalahan saat menyimpan data.",
+                description:
+                    "Terjadi kesalahan saat menyimpan data.",
             });
         } finally {
             setLoading(false);
@@ -381,11 +384,14 @@ function RegisterDialog({ onSuccess }: RegisterDialogProps) {
 
             <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-125">
                 <DialogHeader>
-                    <DialogTitle>Registrasi Anggota KBA17</DialogTitle>
+                    <DialogTitle>
+                        Registrasi Anggota KBA17
+                    </DialogTitle>
 
                     <DialogDescription>
-                        Isi data diri Anda untuk bergabung ke dalam database
-                        alumni SMAN 17 Jakarta Barat.
+                        Isi data diri Anda untuk bergabung ke
+                        dalam database alumni SMAN 17 Jakarta
+                        Barat.
                     </DialogDescription>
                 </DialogHeader>
 
@@ -394,12 +400,25 @@ function RegisterDialog({ onSuccess }: RegisterDialogProps) {
                         onSubmit={form.handleSubmit(onSubmit)}
                         className="space-y-4 pt-4"
                     >
+                        {/* Nama */}
                         <FormField
                             control={form.control}
                             name="nama"
+                            rules={{
+                                required:
+                                    "Nama wajib diisi",
+
+                                minLength: {
+                                    value: 2,
+                                    message:
+                                        "Nama minimal 2 karakter",
+                                },
+                            }}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Nama Lengkap</FormLabel>
+                                    <FormLabel>
+                                        Nama Lengkap
+                                    </FormLabel>
 
                                     <FormControl>
                                         <Input
@@ -414,18 +433,50 @@ function RegisterDialog({ onSuccess }: RegisterDialogProps) {
                         />
 
                         <div className="grid grid-cols-2 gap-4">
+                            {/* Angkatan */}
                             <FormField
                                 control={form.control}
                                 name="angkatan"
+                                rules={{
+                                    required:
+                                        "Tahun lulus wajib diisi",
+
+                                    min: {
+                                        value: 1980,
+                                        message:
+                                            "Tahun tidak valid",
+                                    },
+
+                                    max: {
+                                        value:
+                                            new Date().getFullYear(),
+
+                                        message:
+                                            "Tahun tidak valid",
+                                    },
+                                }}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Tahun Lulus</FormLabel>
+                                        <FormLabel>
+                                            Tahun Lulus
+                                        </FormLabel>
 
                                         <FormControl>
                                             <Input
                                                 type="number"
                                                 placeholder="2020"
-                                                {...field}
+                                                value={field.value}
+                                                onChange={(
+                                                    e
+                                                ) =>
+                                                    field.onChange(
+                                                        Number(
+                                                            e
+                                                                .target
+                                                                .value
+                                                        )
+                                                    )
+                                                }
                                             />
                                         </FormControl>
 
@@ -434,6 +485,7 @@ function RegisterDialog({ onSuccess }: RegisterDialogProps) {
                                 )}
                             />
 
+                            {/* WhatsApp */}
                             <FormField
                                 control={form.control}
                                 name="whatsapp"
@@ -456,17 +508,24 @@ function RegisterDialog({ onSuccess }: RegisterDialogProps) {
                             />
                         </div>
 
+                        {/* Email */}
                         <FormField
                             control={form.control}
-                            name="email"
+                            name="alamat"
+                            rules={{
+                                required:
+                                    "Email wajib diisi"
+                            }}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Email</FormLabel>
+                                    <FormLabel>
+                                        Alamat
+                                    </FormLabel>
 
                                     <FormControl>
                                         <Input
-                                            type="email"
-                                            placeholder="email@contoh.com"
+                                            type="alamat"
+                                            placeholder="jl. "
                                             {...field}
                                         />
                                     </FormControl>
@@ -476,13 +535,15 @@ function RegisterDialog({ onSuccess }: RegisterDialogProps) {
                             )}
                         />
 
+                        {/* Pekerjaan */}
                         <FormField
                             control={form.control}
                             name="pekerjaan"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>
-                                        Pekerjaan / Instansi
+                                        Pekerjaan /
+                                        Instansi
                                     </FormLabel>
 
                                     <FormControl>
